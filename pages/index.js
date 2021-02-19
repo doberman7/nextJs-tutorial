@@ -5,14 +5,19 @@ import { getSortedPostsData } from "../lib/posts";
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
+  //call a joke from api
+  const res = await fetch("https://v2.jokeapi.dev/joke/Any");
+
+  const chistes = await res.json();
   return {
     props: {
       allPostsData,
+      chistes,
     },
   };
 }
 
-export default function Home({ allPostsData }) {
+export default function Home({ allPostsData, chistes }) {
   return (
     <Layout home>
       <Head>
@@ -39,6 +44,7 @@ export default function Home({ allPostsData }) {
           ))}
         </ul>
       </section>
+      <section>RANDOM JOKE: {chistes.setup}</section>
     </Layout>
   );
 }
