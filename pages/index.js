@@ -44,7 +44,15 @@ export default function Home({ allPostsData, chistes }) {
           ))}
         </ul>
       </section>
-      <section>RANDOM JOKE: {chistes.setup}</section>
+      <section>
+        {chistes ? (
+          <>
+            {" "}
+            <p>RANDOM JOKE:{" " + chistes.setup}</p>
+            <p>{chistes && chistes.delivery}</p>
+          </>
+        ) : null}
+      </section>
     </Layout>
   );
 }
