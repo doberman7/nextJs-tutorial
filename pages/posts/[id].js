@@ -14,7 +14,13 @@ export async function getStaticProps({ params }) {
 export default function Post({ postData }) {
   return (
     <Layout>
-      {" "}
+      {/* Add this <Head> tag */}
+      <Head>
+        {/* Replace {postData.date} with this */}
+        <Date dateString={postData.date} />
+
+        {/* <title>{postData.title}</title> */}
+      </Head>{" "}
       {postData.title}
       <br />
       {postData.id}
