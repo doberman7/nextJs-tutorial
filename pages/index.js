@@ -7,17 +7,21 @@ import Link from "next/link";
 import Date from "../components/date";
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
-  //call a joke from api
-  const res = await fetch("https://v2.jokeapi.dev/joke/Any");
+  try {
+    const allPostsData = getSortedPostsData();
+    //call a joke from api
+    const res = await fetch("https://v2.jokeapi.dev/joke/Any");
 
-  const chistes = await res.json();
-  return {
-    props: {
-      allPostsData,
-      chistes,
-    },
-  };
+    const chistes = await res.json();
+    return {
+      props: {
+        allPostsData,
+        chistes,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export default function Home({ allPostsData, chistes }) {
